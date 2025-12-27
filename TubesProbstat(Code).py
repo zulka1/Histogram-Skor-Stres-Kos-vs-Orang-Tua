@@ -2,15 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# =========================
 # Load data
-# =========================
 file_path = r"Your File Directory\TubesProbstat(Responses).xlsx"
 df = pd.read_excel(file_path)
 
-# =========================
 # Kolom skor stres
-# =========================
 skor_columns = [
     "Seberapa besar stres yang Anda rasakan terkait urusan kebersihan dan kerapian tempat tinggal? (Misal: harus nyapu/cuci sendiri vs. disuruh-suruh orang tua)",
     "Seberapa stres Anda dengan kondisi fisik tempat tinggal Anda saat ini? (Misal: ukuran kamar sempit, panas, fasilitas rusak, air mati, atau kamar tidak estetik)",
@@ -26,15 +22,11 @@ for col in skor_columns:
 # Total skor stres
 df["Total Skor Stres"] = df[skor_columns].sum(axis=1)
 
-# =========================
-# Kelompok tempat tinggal
-# =========================
+# tempat tinggal
 kos = df[df["Tempat Tinggal (Saat Ini)"].str.contains("kos", case=False, na=False)]
 ortu = df[df["Tempat Tinggal (Saat Ini)"].str.contains("orang", case=False, na=False)]
 
-# =========================
-# Interval stres (BARU)
-# =========================
+# Interval stres
 stress_bins = [5, 13, 22, 31, 40, 50]
 stress_labels = [
     "Sangat Rendah",
@@ -44,9 +36,7 @@ stress_labels = [
     "Sangat Tinggi"
 ]
 
-# =========================
 # Plot histogram + KDE
-# =========================
 plt.figure(figsize=(12, 6))
 
 sns.histplot(
