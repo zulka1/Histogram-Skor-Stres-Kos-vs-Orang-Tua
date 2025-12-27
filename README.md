@@ -8,8 +8,6 @@
 
   pip install seaborn
 
-  pip install openpyxl
-
 2. change "Your File Directory"
 
   file_path = r"Your File Directory\TubesProbstat(Responses).xlsx"
