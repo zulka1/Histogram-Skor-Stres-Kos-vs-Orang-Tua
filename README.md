@@ -10,7 +10,7 @@
 
 2. change "Your File Directory"
 
-  file_path = r"Your File Directory\TubesProbstat(Responses).xlsx"
+  file_path = r"Your File Directory\TubesProbstat(Responses).csv"
 
   you can replace it with the address of the file you have.
 
