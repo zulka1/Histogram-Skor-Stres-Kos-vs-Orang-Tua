@@ -19,6 +19,7 @@ sns.histplot(
     color='steelblue',
     alpha=0.6,
     label='Kos'
+)
 
 sns.histplot(
     df['Orang Tua'],
