@@ -2,11 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load data
 file_path = r"Your File Directory\TubesProbstat(Responses).xlsx"
 df = pd.read_excel(file_path)
 
-# Kolom skor stres
 skor_columns = [
     "Seberapa besar stres yang Anda rasakan terkait urusan kebersihan dan kerapian tempat tinggal? (Misal: harus nyapu/cuci sendiri vs. disuruh-suruh orang tua)",
     "Seberapa stres Anda dengan kondisi fisik tempat tinggal Anda saat ini? (Misal: ukuran kamar sempit, panas, fasilitas rusak, air mati, atau kamar tidak estetik)",
@@ -15,18 +13,38 @@ skor_columns = [
     "Seberapa sering interaksi dengan orang-orang di tempat tinggal membuat Anda stres? (Misal: konflik dengan ibu bapak kos/teman kos vs. berantem dengan orang tua)"
 ]
 
-# Paksa jadi numerik
 for col in skor_columns:
     df[col] = pd.to_numeric(df[col], errors="coerce")
 
-# Total skor stres
 df["Total Skor Stres"] = df[skor_columns].sum(axis=1)
 
-# tempat tinggal
 kos = df[df["Tempat Tinggal (Saat Ini)"].str.contains("kos", case=False, na=False)]
 ortu = df[df["Tempat Tinggal (Saat Ini)"].str.contains("orang", case=False, na=False)]
 
-# Interval stres
+def statistik_deskriptif(data, nama):
+    print(f"\n=== Statistik Deskriptif ({nama}) ===")
+
+    mean = data.mean()
+    median = data.median()
+    modus = data.mode()
+
+    varians = data.var(ddof=1)      # varians sampel
+    std_dev = data.std(ddof=1)      # standar deviasi sampel
+
+    print(f"Mean               : {mean:.2f}")
+    print(f"Median             : {median:.2f}")
+
+    if not modus.empty:
+        print(f"Modus              : {modus.iloc[0]:.2f}")
+    else:
+        print("Modus              : Tidak ada")
+
+    print(f"Varians            : {varians:.2f}")
+    print(f"Standar Deviasi    : {std_dev:.2f}")
+
+statistik_deskriptif(kos["Total Skor Stres"], "Mahasiswa Kos")
+statistik_deskriptif(ortu["Total Skor Stres"], "Mahasiswa Tinggal dengan Orang Tua")
+
 stress_bins = [5, 13, 22, 31, 40, 50]
 stress_labels = [
     "Sangat Rendah",
@@ -36,7 +54,6 @@ stress_labels = [
     "Sangat Tinggi"
 ]
 
-# Plot histogram + KDE
 plt.figure(figsize=(12, 6))
 
 sns.histplot(
@@ -58,7 +75,6 @@ sns.histplot(
     element="step"
 )
 
-# Garis batas interval stres
 for batas in stress_bins:
     plt.axvline(batas, linestyle="--", color="gray", alpha=0.6)
 
