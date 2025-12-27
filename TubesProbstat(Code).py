@@ -5,7 +5,7 @@ import seaborn as sns
 import scipy.stats as stats
 import os
 
-path_file = r"d:/kuliah/3/probstat/New folder/Histogram-Skor-Stres-Kos-vs-Orang-Tua-main/TubesProbstat(Responses).csv"
+path_file = r"Your File Directory/TubesProbstat(Responses).csv"
 
 if not os.path.exists(path_file):
     path_file = 'TubesProbstat(Responses) - Form Responses 1.csv'
