@@ -1,6 +1,6 @@
 1. before running code
 
-    run this code in CMD if it is not installed on your PC
+    run this code in CMD if the library is not installed on your PC
 
     pip install pandas numpy matplotlib seaborn scipy
 
