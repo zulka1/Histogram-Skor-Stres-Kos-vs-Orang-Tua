@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-path_file = r'/Users/michaelalex/Michael Alex/File Perkuliahan/VS Code/Probstat/TubesProbstat(Responses) - Form Responses 1.csv'
+path_file = r'Your File Directory/Probstat/TubesProbstat(Responses).csv'
 
 if not os.path.exists(path_file):
     path_file = 'TubesProbstat(Responses) - Form Responses 1.csv'
